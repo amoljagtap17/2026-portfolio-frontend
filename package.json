@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:fix": "oxlint --fix",
+    "prettier:format": "prettier . --write",
+    "prettier:check": "prettier . --check",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^19.3.1",
@@ -22,8 +26,14 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "babel-plugin-react-compiler": "^1.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "oxlint": "^1.90.0",
+    "prettier": "3.9.10",
     "typescript": "~7.0.2",
     "vite": "^8.3.6"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

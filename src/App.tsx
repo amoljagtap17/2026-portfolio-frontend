@@ -1,3 +1,5 @@
 export default function App() {
-  return <h1>Portfolio Frontend</h1>;
+  const title = "Portfolio Frontend";
+
+  return <h1>{title}</h1>;
 }
