@@ -17,7 +17,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* App Custom */
+    "strict": true,
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "*": ["./src/*"]
+    }
   },
   "include": ["vite.config.ts"]
 }
