@@ -80,6 +80,37 @@ export const brandedComponents: ThemeOptions["components"] = {
     },
   },
 
+  // Full-width bar: undo the card-style radius / full border from MuiPaper.
+  MuiAppBar: {
+    defaultProps: { color: "inherit", elevation: 0, enableColorOnDark: true },
+    styleOverrides: {
+      root: ({ theme }) => ({
+        borderRadius: 0,
+        border: 0,
+        borderBottom: `${theme.borders.width}px solid ${theme.vars.palette.outline}`,
+        backgroundColor: theme.vars.palette.background.default,
+        color: theme.vars.palette.text.primary,
+      }),
+    },
+  },
+
+  // Edge-anchored panel: square corners, a single border on the content side.
+  MuiDrawer: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        borderRadius: 0,
+        border: 0,
+        boxShadow: "none",
+        "&.MuiDrawer-paperAnchorRight": {
+          borderLeft: `${theme.borders.width}px solid ${theme.vars.palette.outline}`,
+        },
+        "&.MuiDrawer-paperAnchorLeft": {
+          borderRight: `${theme.borders.width}px solid ${theme.vars.palette.outline}`,
+        },
+      }),
+    },
+  },
+
   MuiCard: {
     styleOverrides: {
       root: ({ theme }) => ({

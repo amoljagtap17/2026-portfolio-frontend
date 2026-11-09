@@ -38,9 +38,26 @@ declare module "@mui/material/styles" {
   /** Footer – always dark, in both colour schemes (landing page). */
   interface PaletteFooter {
     background: string;
+    /** Brand name / headings */
+    heading: string;
+    /** Links and body copy */
     text: string;
+    /** Taglines */
+    subtleText: string;
+    /** Copyright row */
     mutedText: string;
+    /** Section labels */
+    accent: string;
+    /** Link hover */
     hover: string;
+    /** Hairline dividers */
+    border: string;
+    /** Pill outlines */
+    borderStrong: string;
+    /** "Open to…" status chip */
+    statusBackground: string;
+    statusText: string;
+    statusDot: string;
   }
 
   interface Palette {

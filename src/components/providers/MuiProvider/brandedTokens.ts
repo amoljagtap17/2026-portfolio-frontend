@@ -159,10 +159,18 @@ const codeSyntax = {
   property: "#9CCDD0",
   value: "#F0B65A",
 };
-const footerText = {
+const footerColors = {
+  heading: "#F3ECE6",
   text: "#E3D8CF",
+  subtleText: "#C2B5AA",
   mutedText: "#B3A69B",
+  accent: "#F0B65A",
   hover: "#F0B65A",
+  border: "rgba(243, 236, 230, 0.14)",
+  borderStrong: "rgba(243, 236, 230, 0.3)",
+  statusBackground: "rgba(156, 203, 148, 0.14)",
+  statusText: "#B7DCB0",
+  statusDot: "#9CCB94",
 };
 
 /**
@@ -223,7 +231,7 @@ function createPalette(
     shadow: c.shadow,
     cta: { main: c.ctaBg, contrastText: c.onCta, mutedText: c.onCta2 },
     code: { background: c.codeBg, text: c.codeText, ...codeSyntax },
-    footer: { background: c.footerBg, ...footerText },
+    footer: { background: c.footerBg, ...footerColors },
   };
 }
 

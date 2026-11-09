@@ -1,11 +1,10 @@
 import AppProviders from "components/providers";
+import AppRoutes from "components/routes";
 
 export default function App() {
-  const title = "Portfolio Frontend";
-
   return (
     <AppProviders>
-      <h1>{title}</h1>
+      <AppRoutes />
     </AppProviders>
   );
 }
