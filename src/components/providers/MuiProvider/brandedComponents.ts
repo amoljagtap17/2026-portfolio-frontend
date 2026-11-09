@@ -28,8 +28,22 @@ export const brandedComponents: ThemeOptions["components"] = {
   MuiContainer: {
     defaultProps: { maxWidth: "lg" },
     styleOverrides: {
-      // Fluid gutters: clamp(16px, 4vw, 48px)
-      root: { paddingInline: "clamp(16px, 4vw, 48px)" },
+      // Fluid gutters: clamp(16px, 4vw, 48px) at every screen size. MUI's own
+      // gutters change at the `sm` breakpoint, so that breakpoint has to be
+      // overridden too or its (narrower) value wins from 600px up.
+      root: ({ theme }) => ({
+        variants: [
+          {
+            props: props => !props.disableGutters,
+            style: {
+              paddingInline: "clamp(16px, 4vw, 48px)",
+              [theme.breakpoints.up("sm")]: {
+                paddingInline: "clamp(16px, 4vw, 48px)",
+              },
+            },
+          },
+        ],
+      }),
     },
   },
 

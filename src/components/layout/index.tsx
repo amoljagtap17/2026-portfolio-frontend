@@ -21,8 +21,8 @@ export default function AppLayout() {
         tabIndex={-1}
         sx={{ flex: 1, py: { xs: 8, md: 12 }, outline: "none" }}
       >
-        {/* Gutters and max-width (lg) come from the theme's MuiContainer. */}
-        <Container>
+        {/* Fluid gutters come from the theme's MuiContainer. */}
+        <Container maxWidth="lg">
           <Outlet />
         </Container>
       </Box>

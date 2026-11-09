@@ -11,12 +11,6 @@ import HeaderMenuButton from "./HeaderMenuButton";
 import HeaderNav from "./HeaderNav";
 import ThemeToggle from "./ThemeToggle";
 
-export { default as HeaderDrawer } from "./HeaderDrawer";
-export { default as HeaderMenuButton } from "./HeaderMenuButton";
-export { default as HeaderNav } from "./HeaderNav";
-export { default as HeaderNavList } from "./HeaderNavList";
-export { default as ThemeToggle } from "./ThemeToggle";
-
 export default function Header() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -29,7 +23,7 @@ export default function Header() {
   return (
     <>
       <AppBar position="sticky" component="header">
-        <Container>
+        <Container maxWidth="lg">
           <Toolbar
             disableGutters
             sx={{

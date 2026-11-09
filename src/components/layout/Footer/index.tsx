@@ -9,16 +9,6 @@ import { type IFooterLinkItem } from "./FooterLinks";
 import FooterNav from "./FooterNav";
 import FooterNow from "./FooterNow";
 
-export { default as FooterBottom } from "./FooterBottom";
-export { default as FooterBrand } from "./FooterBrand";
-export { default as FooterLink } from "./FooterLink";
-export { default as FooterLinks } from "./FooterLinks";
-export { default as FooterNav } from "./FooterNav";
-export { default as FooterNow } from "./FooterNow";
-export { default as FooterSocialLinks } from "./FooterSocialLinks";
-export { default as FooterStatus } from "./FooterStatus";
-export { default as FooterVersion } from "./FooterVersion";
-
 const exploreLinks: IFooterLinkItem[] = navItems.map(({ label, path }) => ({
   label,
   to: path,
@@ -41,17 +31,20 @@ export default function Footer() {
           `${theme.borders.width}px solid ${theme.vars.palette.outline}`,
       }}
     >
+      {/* Anchored to the content's right edge (not the screen's), so on wide
+          monitors the rings stay beside the 1200px container. */}
       <ConcentricRings
-        sx={{
+        sx={theme => ({
           position: "absolute",
-          right: -120,
+          right: `calc(max(0px, (100% - ${theme.breakpoints.values.lg}px) / 2) - 120px)`,
           bottom: -160,
           width: 520,
           height: 520,
-        }}
+        })}
       />
 
       <Container
+        maxWidth="lg"
         sx={{
           position: "relative",
           display: "flex",
@@ -67,7 +60,8 @@ export default function Footer() {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "32px 64px",
+            columnGap: { xs: 6, sm: 16 },
+            rowGap: 8,
             pt: 9,
             borderTop: "1px solid",
             borderColor: "footer.border",

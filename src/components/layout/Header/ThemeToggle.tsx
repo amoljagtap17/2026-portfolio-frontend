@@ -25,6 +25,8 @@ export default function ThemeToggle() {
       startIcon={isDark ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
       sx={{
         minHeight: 44,
+        // Icon-only square on phones (overrides MUI's 64px min-width).
+        minWidth: { xs: 44, sm: 64 },
         px: { xs: 3, sm: 3.5 },
         color: "text.primary",
         backgroundColor: "background.paper",

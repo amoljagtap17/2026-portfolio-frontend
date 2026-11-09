@@ -25,7 +25,13 @@ const presets: Record<BrandLinkVariant, IPreset> = {
     gap: 3,
     color: "text.primary",
     minHeight: 44,
-    nameSx: { fontSize: 20, fontWeight: 600, letterSpacing: "-0.01em" },
+    // Slightly smaller on phones so the name never wraps next to the buttons.
+    nameSx: {
+      fontSize: { xs: 18, sm: 20 },
+      fontWeight: 600,
+      letterSpacing: "-0.01em",
+      whiteSpace: "nowrap",
+    },
   },
   footer: {
     logoSize: 56,
