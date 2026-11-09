@@ -4,7 +4,43 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio-frontend</title>
+    <meta name="author" content="%VITE_APP_AUTHOR%" />
+    <meta name="theme-color" content="%VITE_APP_THEME_COLOR%" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="index, follow" />
+    <!--
+      description, keywords, and canonical are intentionally NOT here — they
+      vary per route and are rendered by the `Head` component on each page
+      instead (src/components/lib/Head). React 19 dedupes <title> across
+      renders (last one wins), but does NOT dedupe plain <meta>/<link> tags,
+      so keeping a static copy of these here would leave two conflicting
+      copies in the DOM once a route's <Head> mounts. This one stays as a
+      pre-hydration/no-JS fallback only.
+    -->
+    <title>%VITE_APP_TITLE%</title>
+
+    <!--
+      Open Graph / Twitter stay static and site-wide (not per-route) on
+      purpose: link-preview crawlers (Slack, Discord, X, LinkedIn, Facebook)
+      don't execute JavaScript, so they only ever see this file — a per-route
+      <Head> override would be invisible to them regardless. Real per-route
+      value goes to the JS-executing search crawlers via title/description
+      above instead.
+    -->
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="%VITE_APP_TITLE%" />
+    <meta property="og:title" content="%VITE_APP_TITLE%" />
+    <meta property="og:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta property="og:url" content="%VITE_APP_URL%" />
+    <meta property="og:image" content="%VITE_APP_OG_IMAGE%" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%VITE_APP_TITLE%" />
+    <meta name="twitter:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta name="twitter:image" content="%VITE_APP_OG_IMAGE%" />
   </head>
   <body>
     <div id="root"></div>
