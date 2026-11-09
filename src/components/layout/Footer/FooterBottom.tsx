@@ -1,19 +1,10 @@
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 import { siteConfig } from "app/config/site";
-import { Link as RouterLink } from "react-router";
+import FooterLink from "./FooterLink";
 
 // Evaluated once at module load (keeps render pure).
 const currentYear = new Date().getFullYear();
-
-const linkSx = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: 1,
-  color: "footer.mutedText",
-  "&:hover": { color: "footer.hover" },
-} as const;
 
 // Copyright row with admin and back-to-top links.
 export default function FooterBottom() {
@@ -38,19 +29,16 @@ export default function FooterBottom() {
       </span>
 
       <Box sx={{ display: "flex", gap: 5 }}>
-        <Link component={RouterLink} to="/admin" underline="none" sx={linkSx}>
+        <FooterLink to="/admin" tone="muted">
           Admin
-        </Link>
-        <Link
-          component="button"
-          type="button"
-          underline="none"
+        </FooterLink>
+        <FooterLink
+          tone="muted"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          sx={linkSx}
         >
           Back to top
           <ArrowUpwardOutlinedIcon aria-hidden="true" sx={{ fontSize: 16 }} />
-        </Link>
+        </FooterLink>
       </Box>
     </Box>
   );

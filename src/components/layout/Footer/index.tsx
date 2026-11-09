@@ -1,23 +1,30 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { siteConfig } from "app/config/site";
+import ConcentricRings from "components/lib/ConcentricRings";
 import { navItems } from "../navItems";
 import FooterBottom from "./FooterBottom";
 import FooterBrand from "./FooterBrand";
-import FooterNav, { type IFooterNavLink } from "./FooterNav";
+import { type IFooterLinkItem } from "./FooterLinks";
+import FooterNav from "./FooterNav";
 import FooterNow from "./FooterNow";
 
 export { default as FooterBottom } from "./FooterBottom";
 export { default as FooterBrand } from "./FooterBrand";
+export { default as FooterLink } from "./FooterLink";
+export { default as FooterLinks } from "./FooterLinks";
 export { default as FooterNav } from "./FooterNav";
 export { default as FooterNow } from "./FooterNow";
+export { default as FooterSocialLinks } from "./FooterSocialLinks";
+export { default as FooterStatus } from "./FooterStatus";
+export { default as FooterVersion } from "./FooterVersion";
 
-const exploreLinks: IFooterNavLink[] = navItems.map(({ label, path }) => ({
+const exploreLinks: IFooterLinkItem[] = navItems.map(({ label, path }) => ({
   label,
   to: path,
 }));
 
-const builderLinks: IFooterNavLink[] = [
+const builderLinks: IFooterLinkItem[] = [
   { label: "Source code", href: siteConfig.social.github },
 ];
 
@@ -34,33 +41,15 @@ export default function Footer() {
           `${theme.borders.width}px solid ${theme.vars.palette.outline}`,
       }}
     >
-      {/* Decorative concentric rings, bottom right */}
-      <Box
-        component="svg"
-        aria-hidden="true"
-        viewBox="0 0 400 400"
+      <ConcentricRings
         sx={{
           position: "absolute",
           right: -120,
           bottom: -160,
           width: 520,
           height: 520,
-          opacity: 0.08,
-          pointerEvents: "none",
         }}
-      >
-        {[190, 130, 70].map(r => (
-          <circle
-            key={r}
-            cx="200"
-            cy="200"
-            r={r}
-            fill="none"
-            stroke="#E8A33D"
-            strokeWidth="2"
-          />
-        ))}
-      </Box>
+      />
 
       <Container
         sx={{

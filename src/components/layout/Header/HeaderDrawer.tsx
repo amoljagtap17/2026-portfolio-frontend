@@ -2,12 +2,8 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { NavLink } from "react-router";
-import { navItems } from "../navItems";
-import HeaderBrand from "./HeaderBrand";
+import BrandLink from "../BrandLink";
+import HeaderNavList from "./HeaderNavList";
 
 interface IHeaderDrawerProps {
   open: boolean;
@@ -42,41 +38,15 @@ export default function HeaderDrawer({ open, onClose }: IHeaderDrawerProps) {
             `${theme.borders.width}px solid ${theme.vars.palette.outline}`,
         }}
       >
-        <HeaderBrand onNavigate={onClose} />
+        <BrandLink variant="header" onNavigate={onClose} />
         <IconButton aria-label="Close menu" onClick={onClose} edge="end">
           <CloseOutlinedIcon />
         </IconButton>
       </Box>
 
-      <List
-        component="nav"
-        aria-label="Mobile"
-        sx={{ display: "flex", flexDirection: "column", gap: 1, p: 3 }}
-      >
-        {navItems.map(({ label, path }) => (
-          <ListItemButton
-            key={path}
-            component={NavLink}
-            to={path}
-            end={path === "/"}
-            onClick={onClose}
-            sx={{
-              minHeight: 48,
-              borderRadius: theme => theme.vars.shape.borderRadiusMd,
-              fontWeight: 500,
-              "&[aria-current='page']": {
-                fontWeight: 600,
-                backgroundColor: "background.surfaceAlt",
-              },
-            }}
-          >
-            <ListItemText
-              primary={label}
-              slotProps={{ primary: { sx: { fontWeight: "inherit" } } }}
-            />
-          </ListItemButton>
-        ))}
-      </List>
+      <Box component="nav" aria-label="Mobile" sx={{ p: 3 }}>
+        <HeaderNavList orientation="vertical" onNavigate={onClose} />
+      </Box>
     </Drawer>
   );
 }

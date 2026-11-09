@@ -1,20 +1,20 @@
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
-import HeaderBrand from "./HeaderBrand";
+import BrandLink from "../BrandLink";
 import HeaderDrawer from "./HeaderDrawer";
+import HeaderMenuButton from "./HeaderMenuButton";
 import HeaderNav from "./HeaderNav";
 import ThemeToggle from "./ThemeToggle";
 
-export { default as HeaderBrand } from "./HeaderBrand";
 export { default as HeaderDrawer } from "./HeaderDrawer";
+export { default as HeaderMenuButton } from "./HeaderMenuButton";
 export { default as HeaderNav } from "./HeaderNav";
+export { default as HeaderNavList } from "./HeaderNavList";
 export { default as ThemeToggle } from "./ThemeToggle";
 
 export default function Header() {
@@ -38,29 +38,15 @@ export default function Header() {
               gap: 4,
             }}
           >
-            <HeaderBrand />
+            <BrandLink variant="header" />
 
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <HeaderNav />
               <ThemeToggle />
-              <IconButton
-                aria-label="Open menu"
-                aria-expanded={drawerOpen}
-                aria-haspopup="dialog"
+              <HeaderMenuButton
+                open={drawerOpen}
                 onClick={() => setMenuOpen(true)}
-                sx={{
-                  display: { xs: "inline-flex", md: "none" },
-                  width: 44,
-                  height: 44,
-                  color: "text.primary",
-                  backgroundColor: "background.paper",
-                  border: t =>
-                    `${t.borders.width}px solid ${t.vars.palette.outline}`,
-                  boxShadow: t => t.elevation.sm,
-                }}
-              >
-                <MenuOutlinedIcon />
-              </IconButton>
+              />
             </Box>
           </Toolbar>
         </Container>

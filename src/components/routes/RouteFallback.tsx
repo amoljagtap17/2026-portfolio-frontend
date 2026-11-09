@@ -8,7 +8,7 @@ export default function RouteFallback() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "40vh",
+        minHeight: "35vh",
       }}
     >
       <Spinner />
