@@ -5,15 +5,19 @@ interface IHeaderMenuButtonProps {
   /** Whether the drawer this button controls is currently open. */
   open: boolean;
   onClick: () => void;
+  /** Lets the parent move focus on and off the button (see Header). */
+  ref?: React.Ref<HTMLButtonElement>;
 }
 
 // Hamburger button that opens HeaderDrawer. Shown below md only.
 export default function HeaderMenuButton({
   open,
   onClick,
+  ref,
 }: IHeaderMenuButtonProps) {
   return (
     <IconButton
+      ref={ref}
       aria-label="Open menu"
       aria-expanded={open}
       aria-haspopup="dialog"

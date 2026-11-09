@@ -8,17 +8,28 @@ import HeaderNavList from "./HeaderNavList";
 interface IHeaderDrawerProps {
   open: boolean;
   onClose: () => void;
+  /** Called once the closing transition has finished. */
+  onExited?: () => void;
 }
 
 // Navigation drawer for screens below md. Closes via the close button, the
 // backdrop, Esc, or by choosing a link.
-export default function HeaderDrawer({ open, onClose }: IHeaderDrawerProps) {
+export default function HeaderDrawer({
+  open,
+  onClose,
+  onExited,
+}: IHeaderDrawerProps) {
   return (
     <Drawer
       anchor="right"
       open={open}
       onClose={onClose}
+      // Header blurs the menu button before opening (so it isn't focused inside
+      // the aria-hidden app root) and refocuses it via `onExited`, so MUI's
+      // automatic restore (which would target <body>) is turned off.
+      disableRestoreFocus
       slotProps={{
+        transition: { onExited },
         paper: {
           role: "dialog",
           "aria-label": "Site navigation",

@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BrandLink from "../BrandLink";
 import HeaderDrawer from "./HeaderDrawer";
 import HeaderMenuButton from "./HeaderMenuButton";
@@ -19,6 +19,21 @@ export default function Header() {
   // The drawer is mobile-only: if the viewport grows past md while it is open,
   // it simply stops being open (no effect/state sync needed).
   const drawerOpen = menuOpen && !isDesktop;
+
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  // MUI marks the rest of the app (#root) aria-hidden while the drawer is
+  // open. If the menu button still has focus at that moment, the browser
+  // blocks it ("aria-hidden on an element because its descendant retained
+  // focus"). So drop focus first, and put it back on the button once the
+  // drawer has finished closing (while it is still closing, its focus trap
+  // would pull focus straight back in).
+  const openMenu = () => {
+    menuButtonRef.current?.blur();
+    setMenuOpen(true);
+  };
+  const closeMenu = () => setMenuOpen(false);
+  const restoreMenuButtonFocus = () => menuButtonRef.current?.focus();
 
   return (
     <>
@@ -38,15 +53,20 @@ export default function Header() {
               <HeaderNav />
               <ThemeToggle />
               <HeaderMenuButton
+                ref={menuButtonRef}
                 open={drawerOpen}
-                onClick={() => setMenuOpen(true)}
+                onClick={openMenu}
               />
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
 
-      <HeaderDrawer open={drawerOpen} onClose={() => setMenuOpen(false)} />
+      <HeaderDrawer
+        open={drawerOpen}
+        onClose={closeMenu}
+        onExited={restoreMenuButtonFocus}
+      />
     </>
   );
 }
